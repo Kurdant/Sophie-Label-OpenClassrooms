@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<title>login</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
+	<meta name="description" content="">
+	<link rel="stylesheet" href="./assets/login.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div id="NavHeader">
+                <div class="Logo">
+                    <img src="./assets/images/logo.png" alt="Logo sophie-bluel">
+                </div>
+                <div class="BarreNav">
+                    <ul>
+                        <li><a href=""><p>projets</p></a></li>
+                        <li><a href=""><p>contact</p></a></li>
+                        <li><a href=""><p>login</p></a></li>
+                        <li><a href=""><img src="./assets/icons/instagram.png" alt=""></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <form id="Formulaire" action="" method="post">
+            <div id="Log_in">
+                <div class="Titre_Form">
+                    <h2>Log In</h2>
+                </div>
+                <div class="Email_Mdp">
+                    <div class="Email_section">
+                        <div class="label"><label for="email"><p>E-mail</p></label></div>
+                        <div class="input_form"><input type="email" placeholder="exemple@mail.com" id="email" ></div>
+                    </div>
+                    <div class="Mdp_section">
+                        <div class="label"><label for="password"><p>Mot de passe</p></label></div>
+                        <div class="input_form"><input type="password" id="password" ></div>
+                    </div>
+                    <div id="error_form">
+                        <p>Une erreur est survenue</p>
+                    </div>
+                </div>
+                
+                <div class="Boutton_Connexion">
+                    <input type="submit" value="Envoyer"></input>
+                    <a href=""><p>Mot de passe oublié</p></a>
+                </div>
+            </div>
+        </form>
+    </main>
+    <footer>
+        <div id="Mentions">
+            <p><a>Mentions Légales</a></p>
+        </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./assets/login.js"></script>
+</body>

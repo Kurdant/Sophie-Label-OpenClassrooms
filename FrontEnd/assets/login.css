@@ -1,0 +1,155 @@
+body{
+    width: 100vw;
+    height: 100%;
+    background-color: #FFFEF8;
+    margin: 0px !important;
+}
+
+h2{
+    font-family: Syne;
+    color: #1D6154;
+}
+
+p{
+    font-family: Work Sans;
+}
+
+#NavHeader{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 90%;
+    margin: auto;
+    justify-content: space-between;
+    height: 100px;
+    margin-bottom: 100px;
+}
+
+.Logo{
+    display: flex;
+    align-items: left;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.Logo h2 {
+    margin: 0px;
+    color: #B1663C;
+}
+
+.Logo p {
+    margin: 0px;
+    color: #B1663C;
+}
+
+.BarreNav ul{
+    display: flex;
+}
+
+.BarreNav li{
+    margin-right: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.BarreNav li :hover{
+    font-weight: bold;
+}
+
+.BarreNav a{
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+}
+
+.BarreNav img{
+    width: 20px;
+}
+
+form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 680px;
+}
+
+#Log_in{
+    width: 400px;
+    margin-bottom: 110px;
+}
+
+.Titre_Form h2{
+    text-align: center;
+}
+
+.input_form input{
+    width: 100%;
+    height: 51px;
+    border: none;
+    box-shadow: 0px 4px 14px 0px #00000017;
+}
+
+.Email_section{
+    margin-bottom: 30px;
+}
+
+.label p{
+    margin: 0px;
+    margin-bottom: 5px;
+}
+
+.Boutton_Connexion{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.Boutton_Connexion input{
+    margin-bottom: 20px;
+    width: 179px;
+    height: 36px;
+    border-radius: 50px;
+    border: none;
+    background-color: #1D6154;
+}
+
+.Boutton_Connexion input{
+    color: white;
+    text-align: center;
+    margin: 0px;
+}
+
+.Boutton_Connexion a{
+    text-decoration: none;
+    color: black;
+}
+
+footer{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 40px;
+    background-color: white;
+}
+
+
+/* Connexion refusé */
+
+#error_form{
+	width: 200px;
+	height: 25px;
+	background-color: rgb(255, 77, 77);
+	color: white;
+    padding: 10px;
+    align-items: center;
+    display: flex;
+    margin-top: 10px !important;
+    margin: auto;
+}
+
+#error_form p{
+    margin: auto;
+}
