@@ -139,8 +139,8 @@ footer{
 /* Connexion refusé */
 
 #error_form{
-	width: 200px;
-	height: 25px;
+    width: 250px;
+    height: 40px;
 	background-color: rgb(255, 77, 77);
 	color: white;
     padding: 10px;
@@ -152,4 +152,14 @@ footer{
 
 #error_form p{
     margin: auto;
+    text-align: center;
 }
+
+#error_form {
+    display: none;
+  }
+  
+  #error_form.visible {
+    display: block;
+  }
+  
