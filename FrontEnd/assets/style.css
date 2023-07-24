@@ -235,3 +235,99 @@ button p{
 button:hover p{
 	color: white;
 }
+
+/* Edit Banner */
+
+#edit_banner{
+	width: 100%;
+	height: 40px;
+	background-color: black;
+	padding-top: 1%;
+}
+
+#edition_button{
+	display: flex;
+	margin-right: 15px;
+}
+
+#update_edition_link {
+	text-decoration: none;
+	color: white;
+}
+
+#edition_button_link {
+	text-decoration: none;
+	color: white;
+}
+
+
+#update_edition{
+	align-items: center;
+    display: flex;
+    justify-content: center;
+	padding: 10px 10px 10px 10px;
+	border-radius: 20px;
+	height: 10px;
+	width: 200px;
+	background-color: white;
+	color: black;
+}
+
+#edition_button p{
+	margin-left: 10px;
+}
+
+#banniere_flex{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+
+#edit_banner{
+	display: none;
+}
+#edit_banner.avaible{
+	display: block;
+}
+
+
+/* Gallery connected */
+#projects_connected{
+	margin: auto;
+}
+
+#projects_connected h2{
+	margin-right: 20px;
+}
+
+#projects_connected a{
+	display: flex;
+	text-decoration: none;
+	color: black;
+}
+
+#projects_connected i{
+	margin-right: 10px;
+}
+
+#projects_connected{
+	display: none;
+}
+#projects_connected.avaible{
+	display: block;
+}
+
+#portfolio{
+	display: block;
+}
+#portfolio.avaible{
+	display: none;
+}
+
+
+/* Popup container */
+#popup_div{
+	width: 200px;
+	height: 200px;
+}

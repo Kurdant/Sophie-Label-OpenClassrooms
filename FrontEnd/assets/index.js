@@ -1,12 +1,17 @@
+function isAuthenticated() {
+  const jwtToken = localStorage.getItem("jwtToken");
+  return jwtToken !== null;
+}
+
 window.addEventListener("load", async () => {
 
-  // SO fetching gallery code
   const response = await fetch('http://localhost:5678/api/works');
   const images = await response.json();
   console.log(images);
 
   const sectionFiches = document.querySelector(".gallery");
   const filtresElement = document.querySelector("#Filtres");
+  
 
   const showAllImages = () => {
     sectionFiches.innerHTML = "";
@@ -56,12 +61,6 @@ window.addEventListener("load", async () => {
   const categories = await secondResponse.json();
   console.log(categories);
 
-  /*
-  * display categories dynamically as HTML buttons inside `#Filtres` element
-    add event listener to the `Tous` button which calls `showAllImages` function
-    add event listeners on other buttons that call another function, which takes the category id as a parameter
-  * */
-
   for (let i = 0; i < categories.length; i++) {
     const category = categories[i];
     const button = document.createElement("button");
@@ -75,6 +74,17 @@ window.addEventListener("load", async () => {
   tousButton.addEventListener("click", showAllImages);
   filtresElement.appendChild(tousButton);
 
+
+  if (isAuthenticated()) {
+    const bannière = document.querySelector("#edit_banner");
+    bannière.classList.add("avaible");
+    const projects_connected = document.querySelector("#projects_connected");
+    projects_connected.classList.add("avaible");
+    const Filtres = document.querySelector("#Filtres");
+    Filtres.classList.add("avaible");
+    const portfolio = document.querySelector("#portfolio");
+    portfolio.classList.add("avaible");
+  }
 });
 
 
