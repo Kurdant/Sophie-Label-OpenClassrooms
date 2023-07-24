@@ -203,6 +203,10 @@ footer nav ul {
     flex-direction: row-reverse;
 }
 
+#Filtres.hide{
+	display: none;
+}
+
 button{
 	display: flex;
 	width: 50%;
@@ -287,7 +291,7 @@ button:hover p{
 #edit_banner{
 	display: none;
 }
-#edit_banner.avaible{
+#edit_banner.available{
 	display: block;
 }
 
@@ -314,15 +318,24 @@ button:hover p{
 #projects_connected{
 	display: none;
 }
-#projects_connected.avaible{
+#projects_connected.available{
 	display: block;
 }
 
 #portfolio{
 	display: block;
 }
-#portfolio.avaible{
+#portfolio.available{
 	display: none;
+}
+
+#portfolio h2{
+	margin-right: 10px;
+}
+
+#portoflio_css{
+	display: flex; 
+	justify-content: center;
 }
 
 
@@ -330,4 +343,41 @@ button:hover p{
 #popup_div{
 	width: 200px;
 	height: 200px;
+}
+
+#popup{
+	text-decoration: none;
+}
+
+#popup_span{
+	display: flex; 
+	padding-top: 10px; 
+	color: black;
+}
+
+#popup{
+	display: none;
+}
+
+#popup.available{
+	display: block;
+}
+
+/* login / logout */
+
+#login{
+	display: block;
+}
+#login.hide{
+	display: none;
+}
+
+#logout{
+	display: block;
+}
+#logout.hide{
+	display: none;
+}
+#logout.available{
+	display: block;
 }

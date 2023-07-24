@@ -74,16 +74,32 @@ window.addEventListener("load", async () => {
   tousButton.addEventListener("click", showAllImages);
   filtresElement.appendChild(tousButton);
 
+  const logout = document.querySelector("#logout");
+  logout.classList.add("hide")
+  
+
 
   if (isAuthenticated()) {
     const bannière = document.querySelector("#edit_banner");
-    bannière.classList.add("avaible");
-    const projects_connected = document.querySelector("#projects_connected");
-    projects_connected.classList.add("avaible");
-    const Filtres = document.querySelector("#Filtres");
-    Filtres.classList.add("avaible");
-    const portfolio = document.querySelector("#portfolio");
-    portfolio.classList.add("avaible");
+    bannière.classList.add("available");
+
+    const hideFilter = document.querySelector("#Filtres");
+    hideFilter.classList.add("hide")
+
+    const popup = document.querySelector("#popup");
+    popup.classList.add("available")
+
+    const login = document.querySelector("#login");
+    login.classList.add("hide")
+
+    const logout = document.querySelector("#logout");
+    logout.classList.add("available")
+
+
+    logout.addEventListener("click", () => {
+      localStorage.removeItem("jwtToken");
+      window.location.href = "./login.html";
+    });
   }
 });
 

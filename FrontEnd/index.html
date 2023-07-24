@@ -37,7 +37,8 @@
 			<ul>
 				<li>projets</li>
 				<li>contact</li>
-				<li><a href="./login.html">login</a></li>
+				<li id="login"><a href="./login.html">login</a></li>
+				<li id="logout"><a href="./login.html">logout</a></li>
 				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 			</ul>
 		</nav>
@@ -59,29 +60,24 @@
 			</article>
 		</section>
 		<section id="portfolio">
-			<h2>Mes Projets</h2>
+			<div id="portoflio_css">
+				<h2>Mes Projets</h2>
+				<!-- TODO condition to hide "modifier" button when NOT connected -->
+				<a href="" id="popup">
+					<div class="popup_div" onclick="myFunction()">
+						<span id="popup_span">
+							<i class="fa-regular fa-pen-to-square" style="margin-right: 5px;"></i>
+							<p>modifier</p>
+						</span>
+					</div>
+				</a>
+			</div>
+			<!-- TODO condition to hide filters when connected -->
 			<div id="Filtres">
 			</div>
 			<div class="gallery">
 			</div>
 		</section>
-
-
-		<section id="portfolio_connected">
-			<div id="projects_connected">
-				<h2>Mes Projets</h2>
-				<a href="" id="popup">
-					<div class="popup_div" onclick="myFunction()">
-						<span>
-							<i class="fa-regular fa-pen-to-square"></i>
-							<p>modifier</p>
-						</span>
-					</div>
-				</a>
-				<div id="Filtres">
-				</div>
-		</section>
-
 
 		<section id="contact">
 			<h2>Contact</h2>
