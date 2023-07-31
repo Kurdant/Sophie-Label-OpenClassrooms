@@ -62,22 +62,33 @@
 		<section id="portfolio">
 			<div id="portoflio_css">
 				<h2>Mes Projets</h2>
-				<!-- TODO condition to hide "modifier" button when NOT connected -->
-				<a href="" id="popup">
-					<div class="popup_div" onclick="myFunction()">
-						<span id="popup_span">
+				<button href="" id="popup">
+					<div class="popup_div">
+						<span id="openmodal">
 							<i class="fa-regular fa-pen-to-square" style="margin-right: 5px;"></i>
 							<p>modifier</p>
 						</span>
 					</div>
-				</a>
+				</button>
 			</div>
-			<!-- TODO condition to hide filters when connected -->
+			<dialog id="modal">
+				<div id="buttoncss">
+					<button id="closemodal">X</button>
+				</div>
+				<div id="titrecss">
+					<p id="titremodal">Galerie photo</p>
+				</div>
+				<div id="secondgallery">
+					<i></i>
+				</div>
+			</dialog>
+
 			<div id="Filtres">
 			</div>
 			<div class="gallery">
 			</div>
 		</section>
+
 
 		<section id="contact">
 			<h2>Contact</h2>

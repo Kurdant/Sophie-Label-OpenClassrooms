@@ -338,31 +338,6 @@ button:hover p{
 	justify-content: center;
 }
 
-
-/* Popup container */
-#popup_div{
-	width: 200px;
-	height: 200px;
-}
-
-#popup{
-	text-decoration: none;
-}
-
-#popup_span{
-	display: flex; 
-	padding-top: 10px; 
-	color: black;
-}
-
-#popup{
-	display: none;
-}
-
-#popup.available{
-	display: block;
-}
-
 /* login / logout */
 
 #login{
@@ -381,3 +356,106 @@ button:hover p{
 #logout.available{
 	display: block;
 }
+
+/* Modal CSS */
+
+#popup{
+	width: 100px;
+	border: 0px solid #35a79200 !important;
+	display: flex !important;
+	align-items: center;
+	justify-content: center;
+}
+
+#popup:hover{
+	background-color: rgba(255, 255, 255, 0);
+	color:#1D6154;
+}
+
+button:hover p{
+	color: #1d6154!important;;
+}
+
+#openmodal{
+	display: flex;
+	align-items: center;
+}
+
+#popup_div{
+	cursor: pointer;
+}
+
+/* Modal CSS */
+
+#titremodal{
+	font-size: 26px;
+}
+
+#closemodal{
+	border: white solid 0px !important;
+	cursor: pointer;
+}
+
+#closemodal:hover {
+	background-color: rgba(255, 255, 255, 0);
+}
+
+.popup_div{
+	cursor: pointer;
+}
+
+#modal {
+	outline: 999em solid rgba(0, 0, 0, .4);
+	position: fixed;
+	margin: auto;
+	bottom: 15%;
+	width: 400px;
+	height: 630px;
+	display: none; 
+	padding: 30px;
+	padding-left: 50px;
+	padding-right: 50px;
+  }
+  
+  #modal.show-modal {
+	display: block;
+  }
+  
+  #buttoncss {
+	display: flex;
+	margin-left: 93%;
+	width: 60px;
+  }
+  
+  #titrecss {
+	margin: auto;
+	width: 186px;
+  }
+  
+  #secondgallery {
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 20px ;
+  }
+
+  #secondgallery i {
+	cursor: pointer;
+  }
+  
+  #secondgallery div {
+	width: calc(26% - 30px);
+    margin: 3px;
+    text-align: center;
+	margin-bottom: 10px;
+  }
+  
+  #secondgallery img {
+	width: 100%;
+	height: auto;
+  }
+  
+  .edit-text {
+	font-size: 14px;
+	margin-top: 5px;
+	color: #555;
+  }
