@@ -45,8 +45,17 @@
 	</header>
 	<main>
 		<section id="introduction">
+			
 			<figure>
 				<img src="./assets/images/sophie-bluel.png" alt="">
+				<button href="" class="popup">
+					<div class="popup_div2">
+						<span class="openmodal">
+							<i class="fa-regular fa-pen-to-square" style="margin-right: 5px;"></i>
+							<p>modifier</p>
+						</span>
+					</div>
+				</button>
 			</figure>
 			<article>
 				<h2>Designer d'espace</h2>
@@ -62,9 +71,9 @@
 		<section id="portfolio">
 			<div id="portoflio_css">
 				<h2>Mes Projets</h2>
-				<button href="" id="popup">
+				<button href="" class="popup">
 					<div class="popup_div">
-						<span id="openmodal">
+						<span class="openmodal">
 							<i class="fa-regular fa-pen-to-square" style="margin-right: 5px;"></i>
 							<p>modifier</p>
 						</span>
@@ -72,14 +81,49 @@
 				</button>
 			</div>
 			<dialog id="modal">
-				<div id="buttoncss">
-					<button id="closemodal">X</button>
+				<!-- partie 1 -->
+				<div id="modal1">
+					<div class="buttoncss">
+						<button class="closemodal">X</button>
+					</div>
+					<div class="titrecss">
+						<p class="titremodal">Galerie photo</p>
+					</div>
+					<div id="secondgallery">
+						<i></i>
+					</div>
+					<div class="separation"></div>
+					<div>
+						<button id="addpicture"><p>Ajouter une photo</p></button>
+						<div id="suppgalerie">supprimer la galerie</div>
+					</div>
 				</div>
-				<div id="titrecss">
-					<p id="titremodal">Galerie photo</p>
-				</div>
-				<div id="secondgallery">
-					<i></i>
+				<!-- partie 2 (ajouter une photo) -->
+				<div id="modal2">
+					<div id="backCloseAjoutPhoto">
+						<div id="retourAjoutPhoto"><i class="fa-solid fa-arrow-left"></i></div>
+						<div class="buttoncss">
+							<button class="closemodal">X</button>
+						</div>
+					</div>
+					<div class="titrecss">
+						<p class="titremodal">Ajout photo</p>
+					</div>
+					<div id="ajoutphoto">
+						<div id="iconAjoutPhoto"><i class="fa-regular fa-image"></i></div>
+						<form action="/api" method="post" enctype="multipart/form-data">
+							<input id="file" name="file" type="file" />
+						</form>
+						<div id="infoAjoutPhoto"><p>jpg, png : 4mo max</p></div>
+					</div>
+					<div>
+						<label for="title" class="label">Titre</label>
+						<input type="text" class="labelModal" id="title" name="title">
+					</div>
+					<div class="separation"></div>
+					<div>
+						<button id="validation"><p>Ajouter une photo</p></button>
+					</div>
 				</div>
 			</dialog>
 

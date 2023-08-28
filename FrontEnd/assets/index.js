@@ -11,7 +11,7 @@ window.addEventListener("load", async () => {
   const filtresElement = document.querySelector("#Filtres");
 
   const showAllImages = () => {
-    sectionFiches.innerHTML = "";
+    sectionFiches.innerHTML = ""; 
 
     for (let i = 0; i < images.length; i++) {
       const gallery = images[i];
@@ -67,9 +67,15 @@ window.addEventListener("load", async () => {
   tousButton.innerText = "Tous";
   tousButton.addEventListener("click", showAllImages);
   filtresElement.appendChild(tousButton);
+  
 
   const logout = document.querySelector("#logout");
   logout.classList.add("hide");
+
+  const popup = document.querySelector(".popup");
+  popup.classList.add("hide");
+
+  /* WHEN AUTHENTICATED */
 
   if (isAuthenticated()) {
     const bannière = document.querySelector("#edit_banner");
@@ -78,8 +84,8 @@ window.addEventListener("load", async () => {
     const hideFilter = document.querySelector("#Filtres");
     hideFilter.classList.add("hide");
 
-    const popup = document.querySelector("#popup");
-    popup.classList.add("available");
+    const popup = document.querySelector(".popup");
+    popup.classList.remove("hide");
 
     const login = document.querySelector("#login");
     login.classList.add("hide");
@@ -94,12 +100,11 @@ window.addEventListener("load", async () => {
   }
 
   /* Code Modal */
-
   const modal = document.querySelector("#modal");
-  const modalbtn = document.querySelector("#openmodal");
-  const closemodal = document.querySelector("#closemodal");
+  const modalbtn = document.querySelector(".openmodal");
+  const closemodal = document.querySelector(".closemodal");
 
-
+  
   const showAllImagesModal = () => {
     const secondgallery = document.querySelector("#secondgallery");
     secondgallery.innerHTML = "";
@@ -114,16 +119,29 @@ window.addEventListener("load", async () => {
       const iconElement = document.createElement("i");
       iconElement.classList.add("fas", "fa-trash-can"); 
       iconElement.setAttribute("aria-hidden", "true"); 
-
+  
       iconElement.addEventListener("click", () => {
-        const imageId = iconElement.getAttribute("data-image-id");
-        console.log(image.id)
-        const parentContainer = iconElement.parentElement;
-        parentContainer.remove();
-
-      })
-
-
+        const imageUrlToDelete = image.imageUrl;
+        fetch('http://localhost:5678/api/works/1', {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ imageUrl: imageUrlToDelete })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            container.remove();
+            alert('Image supprimée avec succès');
+          } else {
+            alert('Une erreur est survenue lors de la suppression de l\'image');
+          }
+        })
+        .catch(error => {
+          console.error('Erreur lors de la requête :', error);
+        });
+      });
   
       const editElement = document.createElement("p");
       editElement.classList.add("edit-text");
@@ -133,7 +151,6 @@ window.addEventListener("load", async () => {
       container.appendChild(editElement);
       container.appendChild(iconElement);
       secondgallery.appendChild(container);
-
     }
   };
   
@@ -148,4 +165,52 @@ window.addEventListener("load", async () => {
   closemodal.addEventListener("click", () => {
     modal.classList.remove("show-modal");
   });
+
+  const modal1 = document.querySelector("#modal1");
+  const modal2 = document.querySelector("#modal2");
+
+  const addPicture = document.querySelector("#addpicture");
+  addPicture.addEventListener("click", () => {
+    modal1.classList.remove("showmodal");
+    modal1.classList.add("hidemodal");
+    modal2.classList.remove("hidemodal");
+    modal2.classList.add("showmodal");
+  });
+
+  const retourAjoutPhoto = document.querySelector("#retourAjoutPhoto")
+  retourAjoutPhoto.addEventListener("click", () => {
+    modal1.classList.remove("hidemodal");
+    modal1.classList.add("showmodal");
+    modal2.classList.remove("showmodal");
+    modal2.classList.add("hidemodal");
+  });   
+
+  /* ajout photo */
+
+  const fileInput = document.getElementById("file");
+  const addButton = document.getElementById("validation");
+  
+  addButton.addEventListener("click", () => {
+    const file = fileInput.files[0];
+    if (!file) {
+      console.log("Aucun fichier sélectionné");
+      return;
+    }
+    const allowedFormats = ["image/jpeg", "image/png"];
+    const maxFileSize = 4 * 1024 * 1024; // 4 Mo
+    if (!allowedFormats.includes(file.type)) {
+      console.log("Le format du fichier n'est pas pris en charge !");
+      return;
+    }
+    if (file.size > maxFileSize) {
+      console.log("Le fichier est trop volumineux (max 4 Mo) !");
+      return;
+    }
+    console.log("Fichier image sélectionné :", file.name);
+  });
+  
 });
+
+
+
+

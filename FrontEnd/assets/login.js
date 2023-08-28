@@ -5,7 +5,7 @@
 
 window.addEventListener("load", async () => {
   if (isAuthenticated()) {
-    window.location.href = "http://127.0.0.1:5500/FrontEnd/index.html";
+    window.location.href = "http://127.0.0.1:5501/FrontEnd/index.html";
   }
 
   let formulaire = document.getElementById("Formulaire");
@@ -38,7 +38,7 @@ window.addEventListener("load", async () => {
         .then((data) => {
           const jwtToken = data.token;
           localStorage.setItem("jwtToken", jwtToken);
-          window.location.href = "http://127.0.0.1:5500/FrontEnd/index.html";
+          window.location.href = "http://127.0.0.1:5501/FrontEnd/index.html";
         })
         .catch((error) => {
           console.error(error);

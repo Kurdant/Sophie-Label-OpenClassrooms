@@ -359,44 +359,53 @@ button:hover p{
 
 /* Modal CSS */
 
-#popup{
+.popup{
 	width: 100px;
 	border: 0px solid #35a79200 !important;
-	display: flex !important;
+	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-#popup:hover{
+.popup:hover{
 	background-color: rgba(255, 255, 255, 0);
 	color:#1D6154;
+}
+
+.popup.available{
+	display: block !important;
+}
+
+.popup.hide{
+	display: none !important;
 }
 
 button:hover p{
 	color: #1d6154!important;;
 }
 
-#openmodal{
+.openmodal{
 	display: flex;
 	align-items: center;
 }
 
-#popup_div{
+.popup_div{
 	cursor: pointer;
 }
 
 /* Modal CSS */
 
-#titremodal{
+.titremodal{
 	font-size: 26px;
+	width: 100%;
 }
 
-#closemodal{
+.closemodal{
 	border: white solid 0px !important;
 	cursor: pointer;
 }
 
-#closemodal:hover {
+.closemodal:hover {
 	background-color: rgba(255, 255, 255, 0);
 }
 
@@ -404,30 +413,38 @@ button:hover p{
 	cursor: pointer;
 }
 
+.popup_div2{
+	margin-left: 85px;
+	cursor: pointer;
+}
+
 #modal {
 	outline: 999em solid rgba(0, 0, 0, .4);
-	position: fixed;
-	margin: auto;
-	bottom: 15%;
-	width: 400px;
-	height: 630px;
-	display: none; 
-	padding: 30px;
-	padding-left: 50px;
-	padding-right: 50px;
+    position: fixed;
+    margin: auto;
+    bottom: 15%;
+    top: 15%;
+    width: 400px;
+    height: 592px;
+    display: none;
+    padding: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
   }
   
   #modal.show-modal {
 	display: block;
+    border-radius: 10px;
+    border-color: white;
   }
   
-  #buttoncss {
+  .buttoncss {
 	display: flex;
-	margin-left: 93%;
+	margin-left: 89%;
 	width: 60px;
   }
   
-  #titrecss {
+  .titrecss {
 	margin: auto;
 	width: 186px;
   }
@@ -440,6 +457,10 @@ button:hover p{
 
   #secondgallery i {
 	cursor: pointer;
+    position: absolute;
+    padding-bottom: 1071px;
+    margin-top: -115px;
+    margin-left: 19px;
   }
   
   #secondgallery div {
@@ -458,4 +479,88 @@ button:hover p{
 	font-size: 14px;
 	margin-top: 5px;
 	color: #555;
+  }
+
+  .separation{
+	border-top: 1px solid #B3B3B3;
+    margin: auto;
+  }
+
+  #addpicture{
+	margin: auto;
+	margin-top: 35px;
+  }
+
+  #addpicture p{
+	color: black;
+  }
+
+  #addpicture p:hover{
+	color: white !important;
+  }
+
+  #suppgalerie{
+	margin: auto;
+	margin-top: 10px;
+	width: 137px;
+	color: red;
+	cursor: pointer;
+  }
+
+
+
+
+  #modal1.showmodal{
+	display: block;
+  }
+
+  #modal2.showmodal{
+	display: block;
+  }
+
+  #modal1.hidemodal{
+	display: none;
+  }
+
+  #modal2.hidemodal{
+	display: none;
+  }
+
+  #modal2{
+	height: 100%;
+	display: none;
+  }
+
+  #backCloseAjoutPhoto	{
+	display: flex;
+  }
+
+  #retourAjoutPhoto{
+	cursor: pointer;
+	margin-top: 10px;
+	margin-right: 10px;
+  }
+  
+
+  #ajoutphoto{
+	margin-top: 40px;
+	margin-bottom: 40px;
+	height: 155px;
+	width: 100%;
+	background-color: #E8F1F6;
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex-direction: column;
+
+  }
+
+  #iconAjoutPhoto i{
+	width: 20px;
+  }
+
+  #validation{
+	margin: auto;
+	margin-top: 35px;
   }
