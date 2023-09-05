@@ -45,12 +45,12 @@
 	</header>
 	<main>
 		<section id="introduction">
-			
+
 			<figure>
 				<img src="./assets/images/sophie-bluel.png" alt="">
 				<button href="" class="popup">
 					<div class="popup_div2">
-						<span class="openmodal">
+						<span id="openmodal1" class="openmodal">
 							<i class="fa-regular fa-pen-to-square" style="margin-right: 5px;"></i>
 							<p>modifier</p>
 						</span>
@@ -73,7 +73,7 @@
 				<h2>Mes Projets</h2>
 				<button href="" class="popup">
 					<div class="popup_div">
-						<span class="openmodal">
+						<span id="openmodal2" class="openmodal">
 							<i class="fa-regular fa-pen-to-square" style="margin-right: 5px;"></i>
 							<p>modifier</p>
 						</span>
@@ -94,7 +94,9 @@
 					</div>
 					<div class="separation"></div>
 					<div>
-						<button id="addpicture"><p>Ajouter une photo</p></button>
+						<button id="addpicture">
+							<p>Ajouter une photo</p>
+						</button>
 						<div id="suppgalerie">supprimer la galerie</div>
 					</div>
 				</div>
@@ -103,27 +105,36 @@
 					<div id="backCloseAjoutPhoto">
 						<div id="retourAjoutPhoto"><i class="fa-solid fa-arrow-left"></i></div>
 						<div class="buttoncss">
-							<button class="closemodal">X</button>
+							<button class="closemodal closemodal2">X</button>
 						</div>
 					</div>
 					<div class="titrecss">
 						<p class="titremodal">Ajout photo</p>
 					</div>
-					<div id="ajoutphoto">
-						<div id="iconAjoutPhoto"><i class="fa-regular fa-image"></i></div>
-						<form action="/api" method="post" enctype="multipart/form-data">
-							<input id="file" name="file" type="file" />
-						</form>
-						<div id="infoAjoutPhoto"><p>jpg, png : 4mo max</p></div>
-					</div>
-					<div>
-						<label for="title" class="label">Titre</label>
-						<input type="text" class="labelModal" id="title" name="title">
-					</div>
-					<div class="separation"></div>
-					<div>
-						<button id="validation"><p>Ajouter une photo</p></button>
-					</div>
+					<form id="form" enctype="multipart/form-data">
+						<div id="ajoutphoto">
+							<div id="iconAjoutPhoto"><i class="fa-regular fa-image"></i></div>
+							<input type="file" id="file" name="image" />
+							<div id="infoAjoutPhoto">
+								<p>jpg, png : 4mo max</p>
+							</div>
+						</div>
+						<div>
+							<label for="title" class="label">Titre</label>
+							<input type="text" class="labelModal" id="title" name="title">
+							
+						</div>
+						<label for="pet-select">Catégories</label>
+						<select name="category" id="categories-select">	
+						</select>
+
+						<div class="separation"></div>
+						<div id="submit_css ">
+							<button class="submit-btn submit_css" type="submit">
+								<p>Valider</p>
+							</button>
+						</div>
+					</form>
 				</div>
 			</dialog>
 

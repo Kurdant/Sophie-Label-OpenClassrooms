@@ -75,6 +75,7 @@ window.addEventListener("load", async () => {
   const popup = document.querySelector(".popup");
   popup.classList.add("hide");
 
+
   /* WHEN AUTHENTICATED */
 
   if (isAuthenticated()) {
@@ -101,7 +102,7 @@ window.addEventListener("load", async () => {
 
   /* Code Modal */
   const modal = document.querySelector("#modal");
-  const modalbtn = document.querySelector(".openmodal");
+  const modalbtn2 = document.querySelector("#openmodal2");
   const closemodal = document.querySelector(".closemodal");
 
   
@@ -117,35 +118,23 @@ window.addEventListener("load", async () => {
       imageElement.src = image.imageUrl;
   
       const iconElement = document.createElement("i");
-      iconElement.classList.add("fas", "fa-trash-can"); 
+      iconElement.classList.add("fa-solid", "fa-trash-can"); 
       iconElement.setAttribute("aria-hidden", "true"); 
   
       iconElement.addEventListener("click", () => {
-        const imageUrlToDelete = image.imageUrl;
-        fetch('http://localhost:5678/api/works/1', {
-          method: "DELETE",
+        console.log(image.id)
+        const id = [0]; 
+      
+        fetch(`http://localhost:5678/api/works/{id}`, {
+          method: 'DELETE',
           headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ imageUrl: imageUrlToDelete })
-        })
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
-            container.remove();
-            alert('Image supprimée avec succès');
-          } else {
-            alert('Une erreur est survenue lors de la suppression de l\'image');
+            'Authorization': `Bearer Token`
           }
-        })
-        .catch(error => {
-          console.error('Erreur lors de la requête :', error);
-        });
+        })  
       });
-  
       const editElement = document.createElement("p");
       editElement.classList.add("edit-text");
-      editElement.innerText = "Éditer";
+      editElement.innerText = "éditer";
   
       container.appendChild(imageElement);
       container.appendChild(editElement);
@@ -155,7 +144,7 @@ window.addEventListener("load", async () => {
   };
   
 
-  modalbtn.addEventListener("click", async () => {
+  modalbtn2.addEventListener("click", async () => {
     modal.classList.add("show-modal");
     const response = await fetch('http://localhost:5678/api/works');
     images = await response.json();
@@ -185,31 +174,104 @@ window.addEventListener("load", async () => {
     modal2.classList.add("hidemodal");
   });   
 
+
+  function getCategories() {
+    fetch('http://localhost:5678/api/categories')
+      .then(response => response.json())
+      .then(data => {
+        const select = document.getElementById('categories-select');
+        data.forEach(category => {
+          const option = document.createElement('option');
+          option.value = category.id; 
+          option.text = category.name; 
+          select.appendChild(option);
+        });
+      })
+      .catch(error => {
+        console.error('Erreur lors de la récupération des catégories :', error);
+      });
+  }
+
+  getCategories();
+  
+
   /* ajout photo */
 
-  const fileInput = document.getElementById("file");
   const addButton = document.getElementById("validation");
-  
-  addButton.addEventListener("click", () => {
-    const file = fileInput.files[0];
-    if (!file) {
-      console.log("Aucun fichier sélectionné");
-      return;
-    }
-    const allowedFormats = ["image/jpeg", "image/png"];
-    const maxFileSize = 4 * 1024 * 1024; // 4 Mo
-    if (!allowedFormats.includes(file.type)) {
-      console.log("Le format du fichier n'est pas pris en charge !");
-      return;
-    }
-    if (file.size > maxFileSize) {
-      console.log("Le fichier est trop volumineux (max 4 Mo) !");
-      return;
-    }
-    console.log("Fichier image sélectionné :", file.name);
+  const title = document.getElementById("title")
+
+  const form = document.getElementById("form");
+  const inputFile = document.getElementById("file");
+  const closemodal2 = document.querySelector(".closemodal2");
+
+  closemodal2.addEventListener("click", () => {
+    modal.classList.remove("show-modal");
   });
+
+  form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const fileInput = document.getElementById("file");
+
+  if (fileInput.files.length <= 0) {
+    console.log("Aucun fichier sélectionné");
+    return;
+  }
+
+  // const formData = new FormData();
+  const formData = new FormData(document.getElementById("form"));
+  console.log("NEW WAY OF GETTING FORM DATA", formData.values()); debugger
+
+  const file = fileInput.files[0];
+  const allowedFormats = ["image/jpeg", "image/png"];
+  const maxFileSize = 4 * 1024 * 1024;
+  if (!allowedFormats.includes(file.type)) {
+    console.log("Le format du fichier n'est pas pris en charge !");
+    return;
+  }
+  if (file.size > maxFileSize) {
+    console.log("Le fichier est trop volumineux (max 4 Mo) !");
+    return;
+  }
+
+  console.log(file); debugger
+  console.log("BEFORE APPENDING", formData.values()); debugger
+  formData.append("image", file);
+  console.log("AFTER APPENDING", formData.values()); debugger
   
+  const select = document.getElementById('categories-select');
+  const selectedCategoryId = select.value;
+
+  const titleInput = document.getElementById("title");
+  const titleValue = titleInput.value;
+
+  console.log("Fichier image sélectionné :", file.name);
+  console.log("Valeur du champ 'title' : ", titleValue);
+  console.log("Catégorie sélectionnée (ID) : ", selectedCategoryId);
+
+
+    fetch("http://localhost:5678/api/works", {
+      method: "POST",
+      headers: { 
+        // 'Content-Type': 'multipart/form-data',
+        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MzkyODI4MywiZXhwIjoxNjk0MDE0NjgzfQ.rN95axl97xTaZfrCVab6s1zrvgBrxoYOuwNUf4BRLEM` },
+      body: formData,
+  })
+  .then(response => {
+    if (response.status === 200) {
+      console.log("Requête réussie !");
+    } else {
+      console.log("Échec de la requête.");
+    }
+  })
+  .catch(error => {
+    console.error("Erreur lors de la requête :", error);
+  });
 });
+  
+    
+  });
+
 
 
 

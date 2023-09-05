@@ -237,7 +237,7 @@ button p{
 }
 
 button:hover p{
-	color: white;
+	color: white !important;
 }
 
 /* Edit Banner */
@@ -377,7 +377,7 @@ button:hover p{
 }
 
 .popup.hide{
-	display: none !important;
+	display: none ;
 }
 
 button:hover p{
@@ -427,7 +427,7 @@ button:hover p{
     width: 400px;
     height: 592px;
     display: none;
-    padding: 30px;
+    padding-top: 55px;
     padding-left: 50px;
     padding-right: 50px;
   }
@@ -440,33 +440,40 @@ button:hover p{
   
   .buttoncss {
 	display: flex;
-	margin-left: 89%;
-	width: 60px;
+    left: 460px;
+    top: 5px;
+    position: absolute;
+    width: 60px;
   }
   
   .titrecss {
 	margin: auto;
-	width: 186px;
+	text-align: center;
+	margin-bottom: 30px;
   }
   
   #secondgallery {
 	display: flex;
 	flex-wrap: wrap;
-	margin-top: 20px ;
+	margin: auto;
+	width: 380px;
   }
 
   #secondgallery i {
 	cursor: pointer;
     position: absolute;
-    padding-bottom: 1071px;
-    margin-top: -115px;
-    margin-left: 19px;
+    bottom: 90px;
+    left: 47px;
+	padding: 3px;
+	border-radius: 3px;
+	background-color: black;
+	color: white;
   }
   
   #secondgallery div {
+	position: relative;
 	width: calc(26% - 30px);
     margin: 3px;
-    text-align: center;
 	margin-bottom: 10px;
   }
   
@@ -478,26 +485,31 @@ button:hover p{
   .edit-text {
 	font-size: 14px;
 	margin-top: 5px;
-	color: #555;
+	color: black;
   }
 
   .separation{
 	border-top: 1px solid #B3B3B3;
     margin: auto;
+	margin-bottom: 30px;
+    margin-top: 30px;
   }
 
   #addpicture{
 	margin: auto;
 	margin-top: 35px;
+	background-color: #1D6154 !important;
+  }
+
+  #addpicture:hover{
+	background-color: white !important;
   }
 
   #addpicture p{
-	color: black;
+	color: white ;
   }
 
-  #addpicture p:hover{
-	color: white !important;
-  }
+
 
   #suppgalerie{
 	margin: auto;
@@ -563,4 +575,43 @@ button:hover p{
   #validation{
 	margin: auto;
 	margin-top: 35px;
+  }
+
+  #file{
+	width: 400px;
+	height: 155px;
+  }
+
+  #title{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 98%;
+	height: 50px;
+  }
+
+  #categories-select{
+	margin-top: 10px;
+	width: 100%;
+	height: 50px;
+  }
+
+  #form{
+	width: 380px;
+  }
+
+  .submit-btn{
+	margin: auto;
+	border: white !important;
+  }
+
+  .submit_css{
+	background-color: gray;
+  }
+
+  .submit_css p{
+	color: white;
+  }
+
+  .submit_css:hover{
+	color : white;
   }
