@@ -4,6 +4,7 @@ function isAuthenticated() {
 }
 
 window.addEventListener("load", async () => {
+
   const response = await fetch('http://localhost:5678/api/works');
   let images = await response.json();
 
@@ -121,16 +122,17 @@ window.addEventListener("load", async () => {
       iconElement.classList.add("fa-solid", "fa-trash-can"); 
       iconElement.setAttribute("aria-hidden", "true"); 
   
-      iconElement.addEventListener("click", () => {
-        console.log(image.id)
-        const id = [0]; 
-      
-        fetch(`http://localhost:5678/api/works/{id}`, {
+      iconElement.addEventListener("click", (e) => {
+        const id = image.id; 
+        const jwtToken = localStorage.getItem("jwtToken");
+        fetch(`http://localhost:5678/api/works/${id}`, {
           method: 'DELETE',
           headers: {
-            'Authorization': `Bearer Token`
+            'Authorization': `Bearer ${jwtToken}`
           }
+          
         })  
+        console.log(jwtToken)
       });
       const editElement = document.createElement("p");
       editElement.classList.add("edit-text");
@@ -160,6 +162,7 @@ window.addEventListener("load", async () => {
 
   const addPicture = document.querySelector("#addpicture");
   addPicture.addEventListener("click", () => {
+    modal.classList.add("more_height");
     modal1.classList.remove("showmodal");
     modal1.classList.add("hidemodal");
     modal2.classList.remove("hidemodal");
@@ -168,6 +171,7 @@ window.addEventListener("load", async () => {
 
   const retourAjoutPhoto = document.querySelector("#retourAjoutPhoto")
   retourAjoutPhoto.addEventListener("click", () => {
+    modal.classList.remove("more_height");
     modal1.classList.remove("hidemodal");
     modal1.classList.add("showmodal");
     modal2.classList.remove("showmodal");
@@ -204,6 +208,8 @@ window.addEventListener("load", async () => {
   const inputFile = document.getElementById("file");
   const closemodal2 = document.querySelector(".closemodal2");
 
+
+  
   closemodal2.addEventListener("click", () => {
     modal.classList.remove("show-modal");
   });
@@ -220,7 +226,6 @@ window.addEventListener("load", async () => {
 
   // const formData = new FormData();
   const formData = new FormData(document.getElementById("form"));
-  console.log("NEW WAY OF GETTING FORM DATA", formData.values()); debugger
 
   const file = fileInput.files[0];
   const allowedFormats = ["image/jpeg", "image/png"];
@@ -234,42 +239,34 @@ window.addEventListener("load", async () => {
     return;
   }
 
-  console.log(file); debugger
-  console.log("BEFORE APPENDING", formData.values()); debugger
   formData.append("image", file);
-  console.log("AFTER APPENDING", formData.values()); debugger
   
   const select = document.getElementById('categories-select');
   const selectedCategoryId = select.value;
 
   const titleInput = document.getElementById("title");
   const titleValue = titleInput.value;
+  const jwtToken = localStorage.getItem("jwtToken");
+  
+  for (const [key, value] of formData.entries()) {
+    console.log(`${key}: ${value}`);
+}
 
-  console.log("Fichier image sélectionné :", file.name);
-  console.log("Valeur du champ 'title' : ", titleValue);
-  console.log("Catégorie sélectionnée (ID) : ", selectedCategoryId);
 
 
     fetch("http://localhost:5678/api/works", {
+      
       method: "POST",
       headers: { 
-        // 'Content-Type': 'multipart/form-data',
-        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MzkyODI4MywiZXhwIjoxNjk0MDE0NjgzfQ.rN95axl97xTaZfrCVab6s1zrvgBrxoYOuwNUf4BRLEM` },
+        'Content-Type': 'multipart/form-data',
+        'Authorization': `Bearer ${jwtToken}` },
       body: formData,
   })
-  .then(response => {
-    if (response.status === 200) {
-      console.log("Requête réussie !");
-    } else {
-      console.log("Échec de la requête.");
-    }
-  })
-  .catch(error => {
-    console.error("Erreur lors de la requête :", error);
-  });
+
+
 });
-  
-    
+const data = await response.json();
+console.log(data);
   });
 
 

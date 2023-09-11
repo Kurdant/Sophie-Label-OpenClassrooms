@@ -425,12 +425,16 @@ button:hover p{
     bottom: 15%;
     top: 15%;
     width: 400px;
-    height: 592px;
+    height: 500px;
     display: none;
     padding-top: 55px;
     padding-left: 50px;
     padding-right: 50px;
   }
+
+#modal.more_height{
+	height: 592px;
+}
   
   #modal.show-modal {
 	display: block;
@@ -569,7 +573,9 @@ button:hover p{
   }
 
   #iconAjoutPhoto i{
-	width: 20px;
+	font-size: 76px;
+    margin-top: 15px;
+	color: #cbd6dc;
   }
 
   #validation{
@@ -578,8 +584,14 @@ button:hover p{
   }
 
   #file{
-	width: 400px;
-	height: 155px;
+	background-color: #cbd6dc;
+	border-radius: 20px;
+	width: 173px;
+	height: 36px;
+	top: 881px;
+	left: 633px;
+	border-radius: 50px;
+
   }
 
   #title{
@@ -612,6 +624,34 @@ button:hover p{
 	color: white;
   }
 
+  .submit_css:hover p{
+	color : white !important;
+  }
+
   .submit_css:hover{
 	color : white;
   }
+
+  #file{
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+  }
+
+  #file + label{
+		width: 173px;
+		height: 36px;
+		border-radius: 20px;
+		text-align: center;
+		color: #1d6154;
+		background-color: #cbd6dc;
+		display: inline-block;
+		line-height: 36px;
+	}
+	
+	#file + label:hover {
+		cursor: pointer;
+	}

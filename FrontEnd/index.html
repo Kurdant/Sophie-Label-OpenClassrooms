@@ -48,14 +48,6 @@
 
 			<figure>
 				<img src="./assets/images/sophie-bluel.png" alt="">
-				<button href="" class="popup">
-					<div class="popup_div2">
-						<span id="openmodal1" class="openmodal">
-							<i class="fa-regular fa-pen-to-square" style="margin-right: 5px;"></i>
-							<p>modifier</p>
-						</span>
-					</div>
-				</button>
 			</figure>
 			<article>
 				<h2>Designer d'espace</h2>
@@ -97,7 +89,6 @@
 						<button id="addpicture">
 							<p>Ajouter une photo</p>
 						</button>
-						<div id="suppgalerie">supprimer la galerie</div>
 					</div>
 				</div>
 				<!-- partie 2 (ajouter une photo) -->
@@ -107,14 +98,16 @@
 						<div class="buttoncss">
 							<button class="closemodal closemodal2">X</button>
 						</div>
+						<div class="titrecss">
+							<p class="titremodal">Ajout photo</p>
+						</div>
 					</div>
-					<div class="titrecss">
-						<p class="titremodal">Ajout photo</p>
-					</div>
+
 					<form id="form" enctype="multipart/form-data">
 						<div id="ajoutphoto">
 							<div id="iconAjoutPhoto"><i class="fa-regular fa-image"></i></div>
-							<input type="file" id="file" name="image" />
+							<input type="file" id="file" name="image"/>
+							<label for="file">+ Ajouter une photo</label>
 							<div id="infoAjoutPhoto">
 								<p>jpg, png : 4mo max</p>
 							</div>
