@@ -123,6 +123,7 @@ window.addEventListener("load", async () => {
       iconElement.setAttribute("aria-hidden", "true"); 
   
       iconElement.addEventListener("click", (e) => {
+        e.preventDefault();
         const id = image.id; 
         const jwtToken = localStorage.getItem("jwtToken");
         fetch(`http://localhost:5678/api/works/${id}`, {
@@ -130,9 +131,10 @@ window.addEventListener("load", async () => {
           headers: {
             'Authorization': `Bearer ${jwtToken}`
           }
-          
         })  
-        console.log(jwtToken)
+        .catch(error => {
+          console.error(error);
+        });
       });
       const editElement = document.createElement("p");
       editElement.classList.add("edit-text");
