@@ -183,7 +183,7 @@ window.addEventListener("load", async () => {
     fetch('http://localhost:5678/api/categories')
       .then(response => response.json())
       .then(data => {
-        const select = document.getElementById('categories-select');
+        const select = document.getElementById('category');
         data.forEach(category => {
           const option = document.createElement('option');
           option.value = category.id; 
@@ -205,7 +205,7 @@ window.addEventListener("load", async () => {
   const title = document.getElementById("title")
 
   const form = document.getElementById("form");
-  const inputFile = document.getElementById("file");
+  const file = document.getElementById("file");
   const closemodal2 = document.querySelector(".closemodal2");
 
 
@@ -214,62 +214,38 @@ window.addEventListener("load", async () => {
     modal.classList.remove("show-modal");
   });
 
-  form.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const fileInput = document.getElementById("file");
-
-  if (fileInput.files.length <= 0) {
-    console.log("Aucun fichier sélectionné");
-    return;
-  }
-
-  // const formData = new FormData();
-  const formData = new FormData(document.getElementById("form"));
-
-  const file = fileInput.files[0];
-  const allowedFormats = ["image/jpeg", "image/png"];
-  const maxFileSize = 4 * 1024 * 1024;
-  if (!allowedFormats.includes(file.type)) {
-    console.log("Le format du fichier n'est pas pris en charge !");
-    return;
-  }
-  if (file.size > maxFileSize) {
-    console.log("Le fichier est trop volumineux (max 4 Mo) !");
-    return;
-  }
-
-  formData.append("image", file);
-  
-  const select = document.getElementById('categories-select');
-  const selectedCategoryId = select.value;
-
-  const titleInput = document.getElementById("title");
-  const titleValue = titleInput.value;
   const jwtToken = localStorage.getItem("jwtToken");
-  
-  for (const [key, value] of formData.entries()) {
-    console.log(`${key}: ${value}`);
-}
 
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    const fileInput = document.getElementById("file");
+    const image = fileInput.files[0];
+    formData.append('image', image);
 
+    const title = document.getElementById('title');
+    formData.append('title', title.value);
+    
+    const category = document.getElementById('category');
+    formData.append('category', category.value);
 
-    fetch("http://localhost:5678/api/works", {
-      
-      method: "POST",
-      headers: { 
-        'Content-Type': 'multipart/form-data',
-        'Authorization': `Bearer ${jwtToken}` },
-      body: formData,
-  })
+    for (const [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
 
+    try {
+      const reponse = await fetch("http://localhost:5678/api/works", {
+        method: "POST",
+        headers: { 
+          'Authorization': `Bearer ${jwtToken}` },
+        body: formData,
+      })
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+});
 
 });
-const data = await response.json();
-console.log(data);
-  });
-
-
-
-
 

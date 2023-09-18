@@ -425,7 +425,7 @@ button:hover p{
     bottom: 15%;
     top: 15%;
     width: 400px;
-    height: 500px;
+    height: auto;
     display: none;
     padding-top: 55px;
     padding-left: 50px;
@@ -601,7 +601,7 @@ button:hover p{
 	height: 50px;
   }
 
-  #categories-select{
+  #category{
 	margin-top: 10px;
 	width: 100%;
 	height: 50px;
