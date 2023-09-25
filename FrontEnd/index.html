@@ -60,7 +60,7 @@
 				<h2>Mes Projets</h2>
 				<button href="" class="popup">
 					<div class="popup_div">
-						<span id="openmodal2" class="openmodal">
+						<span id="openModal" class="openmodal">
 							<i class="fa-regular fa-pen-to-square" style="margin-right: 5px;"></i>
 							<p>modifier</p>
 						</span>
@@ -68,16 +68,14 @@
 				</button>
 			</div>
 			<dialog id="modal">
-				<!-- partie 1 -->
-				<div id="modal1">
+				<div id="modalGalleryWrapper">
 					<div class="buttoncss">
 						<button class="closemodal">X</button>
 					</div>
 					<div class="titrecss">
 						<p class="titremodal">Galerie photo</p>
 					</div>
-					<div id="secondgallery">
-						<i></i>
+					<div id="modalGallery">
 					</div>
 					<div class="separation"></div>
 					<div>
@@ -86,12 +84,13 @@
 						</button>
 					</div>
 				</div>
+
 				<!-- partie 2 (ajouter une photo) -->
-				<div id="modal2">
+				<div id="addWorkModal">
 					<div id="backCloseAjoutPhoto">
-						<div id="retourAjoutPhoto"><i class="fa-solid fa-arrow-left"></i></div>
+						<div id="addWorkModalExitBtn"><i class="fa-solid fa-arrow-left"></i></div>
 						<div class="buttoncss">
-							<button class="closemodal closemodal2">X</button>
+							<button class="closemodal closeAddWorkModal">X</button>
 						</div>
 						<div class="titrecss">
 							<p class="titremodal">Ajout photo</p>
@@ -111,10 +110,9 @@
 						<div>
 							<label for="title" class="label">Titre</label>
 							<input type="text" class="labelModal" id="title" name="title">
-							
 						</div>
 						<label for="pet-select">Catégories</label>
-						<select name="category" id="category">	
+						<select name="category" id="categoriesSelect">	
 						</select>
 
 						<div class="separation"></div>
@@ -132,7 +130,6 @@
 			<div class="gallery">
 			</div>
 		</section>
-
 
 		<section id="contact">
 			<h2>Contact</h2>

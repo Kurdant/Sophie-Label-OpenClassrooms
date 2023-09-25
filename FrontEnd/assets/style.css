@@ -466,7 +466,7 @@ button:hover p{
 	margin-bottom: 30px;
   }
   
-  #secondgallery {
+  #modalGallery {
 	display: flex;
 	flex-wrap: wrap;
 	margin: auto;
@@ -475,7 +475,7 @@ button:hover p{
 	overflow-y: auto;
   }
 
-  #secondgallery i {
+  #modalGallery i {
 	cursor: pointer;
     position: absolute;
     bottom: 90px;
@@ -486,14 +486,14 @@ button:hover p{
 	color: white;
   }
   
-  #secondgallery div {
+  #modalGallery div {
 	position: relative;
 	width: calc(26% - 30px);
     margin: 3px;
 	margin-bottom: 10px;
   }
   
-  #secondgallery img {
+  #modalGallery img {
     height: 93px;
     max-width: 100%;
     object-fit: contain;
@@ -539,23 +539,23 @@ button:hover p{
 
 
 
-  #modal1.showmodal{
+  #modalGalleryWrapper.showmodal{
 	display: block;
   }
 
-  #modal2.showmodal{
+  #addWorkModal.showmodal{
 	display: block;
   }
 
-  #modal1.hidemodal{
+  #modalGalleryWrapper.hidemodal{
 	display: none;
   }
 
-  #modal2.hidemodal{
+  #addWorkModal.hidemodal{
 	display: none;
   }
 
-  #modal2{
+  #addWorkModal{
 	height: 100%;
 	display: none;
   }
@@ -564,7 +564,7 @@ button:hover p{
 	display: flex;
   }
 
-  #retourAjoutPhoto{
+  #addWorkModalExitBtn{
 	cursor: pointer;
 	margin-top: 10px;
 	margin-right: 10px;
