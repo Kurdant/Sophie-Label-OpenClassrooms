@@ -141,7 +141,7 @@ li:hover {
 .gallery img {
 	height: 491px;
     max-width: 100%;
-    object-fit: contain;
+    object-fit: cover;
 }
 #contact {
 	width: 50%;

@@ -48,5 +48,6 @@ window.addEventListener("load", async () => {
 
     document.getElementById("email").value = "";
     document.getElementById("password").value = "";
+    console.log(email);
   });
 });

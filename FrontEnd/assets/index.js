@@ -122,19 +122,21 @@ window.addEventListener("load", async () => {
       iconElement.classList.add("fa-solid", "fa-trash-can"); 
       iconElement.setAttribute("aria-hidden", "true"); 
   
-      iconElement.addEventListener("click", (e) => {
+      iconElement.addEventListener("click", async (e) => {
         e.preventDefault();
         const id = image.id; 
         const jwtToken = localStorage.getItem("jwtToken");
-        fetch(`http://localhost:5678/api/works/${id}`, {
-          method: 'DELETE',
-          headers: {
-            'Authorization': `Bearer ${jwtToken}`
-          }
-        })  
-        .catch(error => {
+        try {
+          await fetch(`http://localhost:5678/api/works/${id}`, {
+            method: 'DELETE',
+            headers: {
+              'Authorization': `Bearer ${jwtToken}`
+            }
+          });
+        } catch (error) {
           console.error(error);
-        });
+        }
+        debugger;
       });
       const editElement = document.createElement("p");
       editElement.classList.add("edit-text");
