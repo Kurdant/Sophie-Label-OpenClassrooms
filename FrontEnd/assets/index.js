@@ -1,4 +1,3 @@
-// ! defining functions
 function isAuthenticated() {
   const jwtToken = localStorage.getItem("jwtToken");
   return jwtToken !== null;
@@ -46,23 +45,30 @@ const showAllImagesModal = (modalGallery, works) => {
     container.appendChild(editElement);
     container.appendChild(iconElement);
     modalGallery.appendChild(container);
-    
+
+
+  
     iconElement.addEventListener("click", async (e) => {
       e.preventDefault();
       try {
-        await fetch(`http://localhost:5678/api/works/${id}`, {
+        const response = await fetch(`http://localhost:5678/api/works/${id}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${jwtToken}`
           }
         });
-        // TODO verify is `response.status` is 2xx
-          // TODO: delete the corresponding item from the DOM inside the modal
-          // TODO: delete the corresponding item from the DOM inside the main gallery
+        if (response.status === 200) {
+          container.remove();
+        } else {
+          console.error(`La suppression a échoué avec un statut ${response.status}`);
+        }
       } catch (error) {
         console.error(error);
       }
+      
     });
+// ...
+
   }
 };
 
