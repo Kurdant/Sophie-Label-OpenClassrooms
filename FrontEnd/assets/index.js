@@ -3,17 +3,20 @@ function isAuthenticated() {
   return jwtToken !== null;
 }
 
+
 const showAllImages = (gallery, works) => {
-  gallery.innerHTML = ""; 
+  gallery.innerHTML = "";
 
   for (let i = 0; i < works.length; i++) {
     const work = works[i];
+    const id = work.id;
 
     const container = document.createElement("div");
     const imageElement = document.createElement("img");
     const titleElement = document.createElement("figcaption");
 
     imageElement.src = work.imageUrl;
+    container.id = `gallery_${id}`;
     titleElement.innerText = work.title;
 
     container.appendChild(imageElement);
@@ -27,7 +30,7 @@ const showAllImagesModal = (modalGallery, works) => {
 
   for (let i = 0; i < works.length; i++) {
     const work = works[i];
-    const id = work.id; 
+    const id = work.id;
     const jwtToken = localStorage.getItem("jwtToken");
 
     const container = document.createElement("div");
@@ -36,8 +39,9 @@ const showAllImagesModal = (modalGallery, works) => {
     const editElement = document.createElement("p");
 
     imageElement.src = work.imageUrl;
-    iconElement.classList.add("fa-solid", "fa-trash-can"); 
-    iconElement.setAttribute("aria-hidden", "true"); 
+    container.id = `modal_${id}`;
+    iconElement.classList.add("fa-solid", "fa-trash-can");
+    iconElement.setAttribute("aria-hidden", "true");
     editElement.classList.add("edit-text");
     editElement.innerText = "éditer";
 
@@ -47,7 +51,7 @@ const showAllImagesModal = (modalGallery, works) => {
     modalGallery.appendChild(container);
 
 
-  
+
     iconElement.addEventListener("click", async (e) => {
       e.preventDefault();
       try {
@@ -57,17 +61,19 @@ const showAllImagesModal = (modalGallery, works) => {
             'Authorization': `Bearer ${jwtToken}`
           }
         });
-        if (response.status === 200) {
-          container.remove();
+        if (response.status === 204) {
+          // delete work inside modal dynamically
+          document.getElementById(`modal_${id}`).remove();
+          // delete work in main display dynamically
+          document.getElementById(`gallery_${id}`).remove();
         } else {
           console.error(`La suppression a échoué avec un statut ${response.status}`);
         }
       } catch (error) {
         console.error(error);
       }
-      
     });
-// ...
+    
 
   }
 };
@@ -127,8 +133,7 @@ window.addEventListener("load", async () => {
   const fileInput = document.getElementById("file");
   const closeAddWorkModal = document.querySelector(".closeAddWorkModal");
 
-  // we start updating the DOM here
-
+  // we start updating the DOM here by showing my images
   showAllImages(gallery, works);
 
   // we update the DOM with the categories buttons on the main page
@@ -146,8 +151,8 @@ window.addEventListener("load", async () => {
   // we update the DOM with the categories buttons inside the modal select
   categories.forEach(category => {
     const option = document.createElement('option');
-    option.value = category.id; 
-    option.text = category.name; 
+    option.value = category.id;
+    option.text = category.name;
     select.appendChild(option);
   });
 
@@ -195,7 +200,7 @@ window.addEventListener("load", async () => {
     modalGalleryWrapper.classList.add("showmodal");
     addWorkModal.classList.remove("showmodal");
     addWorkModal.classList.add("hidemodal");
-  });   
+  });
 
   closeAddWorkModal.addEventListener("click", () => {
     modal.classList.remove("show-modal");
@@ -208,7 +213,7 @@ window.addEventListener("load", async () => {
     formData.append('image', image);
 
     formData.append('title', title.value);
-    
+
     const categoriesSelect = document.getElementById('categoriesSelect');
     formData.append('category', categoriesSelect.value);
 
@@ -219,12 +224,65 @@ window.addEventListener("load", async () => {
     try {
       const reponse = await fetch("http://localhost:5678/api/works", {
         method: "POST",
-        headers: { 
-          'Authorization': `Bearer ${jwtToken}` },
+        headers: {
+          'Authorization': `Bearer ${jwtToken}`
+        },
         body: formData,
       })
-      const data = await worksAPICall.json();
-      console.log(data);
+      if (reponse.status === 201){
+        const newWork = await reponse.json();
+        const newWorkId = newWork.id;
+
+        // add new work inside gallery dynamically
+        const newWorkGalleryContainer = document.createElement("div");
+        const newWorkImageGalleryElement = document.createElement("img");
+        const newWorkGalleryTitleElement = document.createElement("figcaption");
+        newWorkImageGalleryElement.src = newWork.imageUrl;
+        newWorkGalleryContainer.id = `gallery_${newWorkId}`;
+        newWorkGalleryTitleElement.innerText = newWork.title;
+        newWorkGalleryContainer.appendChild(newWorkImageGalleryElement);
+        newWorkGalleryContainer.appendChild(newWorkGalleryTitleElement);
+        gallery.appendChild(newWorkGalleryContainer);
+
+        // add new work inside modal dynamically
+        const jwtToken = localStorage.getItem("jwtToken");
+        const newWorkModalContainer = document.createElement("div");
+        const newWorkImageModalElement = document.createElement("img");
+        const iconElement = document.createElement("i");
+        const editElement = document.createElement("p");
+        newWorkImageModalElement.src = newWork.imageUrl;
+        newWorkModalContainer.id = `modal_${newWorkId}`;
+        iconElement.classList.add("fa-solid", "fa-trash-can");
+        iconElement.setAttribute("aria-hidden", "true");
+        editElement.classList.add("edit-text");
+        editElement.innerText = "éditer";
+        newWorkModalContainer.appendChild(newWorkImageModalElement);
+        newWorkModalContainer.appendChild(editElement);
+        newWorkModalContainer.appendChild(iconElement);
+        modalGallery.appendChild(newWorkModalContainer);
+        iconElement.addEventListener("click", async (e) => {
+          e.preventDefault();
+          try {
+            const response = await fetch(`http://localhost:5678/api/works/${newWorkId}`, {
+              method: 'DELETE',
+              headers: {
+                'Authorization': `Bearer ${jwtToken}`
+              }
+            });
+            if (response.status === 204) {
+              // delete work inside modal dynamically
+              document.getElementById(`modal_${newWorkId}`).remove();
+              // delete work in main display dynamically
+              document.getElementById(`gallery_${newWorkId}`).remove();
+            } else {
+              console.error(`La suppression a échoué avec un statut ${response.status}`);
+            }
+          } catch (error) {
+            console.error(error);
+          }
+        });
+
+      }
     } catch (error) {
       console.error(error);
     }
