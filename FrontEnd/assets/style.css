@@ -450,6 +450,7 @@ button:hover p{
 	display: block;
     border-radius: 10px;
     border-color: white;
+	max-height: 590px;
   }
   
   .buttoncss {
