@@ -53,7 +53,7 @@ const showAllImagesModal = (modalGallery, works) => {
     modalGallery.appendChild(container);
 
 
-
+// suppression images
     iconElement.addEventListener("click", async (e) => {
       e.preventDefault();
       try {
@@ -80,7 +80,8 @@ const showAllImagesModal = (modalGallery, works) => {
   }
 };
 
-const showImagesByCategory = (categoryId) => {
+// affichage catégories
+const showImagesByCategory = (categoryId, gallery, works) => {
   gallery.innerHTML = "";
 
   for (let i = 0; i < works.length; i++) {
@@ -144,7 +145,7 @@ window.addEventListener("load", async () => {
     const button = document.createElement("button");
     button.innerText = category.name;
     filters.appendChild(button);
-    button.addEventListener("click", () => showImagesByCategory(category.id));
+    button.addEventListener("click", () => showImagesByCategory(category.id, gallery, works));
   }
     // we create Tous button
   const buttonForAllCategories = document.createElement("button");
