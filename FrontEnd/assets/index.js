@@ -1,9 +1,10 @@
+// Check for the Token 
 function isAuthenticated() {
   const jwtToken = localStorage.getItem("jwtToken");
   return jwtToken !== null;
 }
 
-
+// Display all the works in a for loop
 const showAllImages = (gallery, works) => {
   gallery.innerHTML = "";
 
@@ -25,6 +26,7 @@ const showAllImages = (gallery, works) => {
   }
 };
 
+// Display all the works in the modal in a for loop
 const showAllImagesModal = (modalGallery, works) => {
   modalGallery.innerHTML = "";
 
@@ -144,6 +146,7 @@ window.addEventListener("load", async () => {
     filters.appendChild(button);
     button.addEventListener("click", () => showImagesByCategory(category.id));
   }
+    // we create Tous button
   const buttonForAllCategories = document.createElement("button");
   buttonForAllCategories.innerText = "Tous";
   filters.appendChild(buttonForAllCategories);
@@ -157,6 +160,8 @@ window.addEventListener("load", async () => {
   });
 
   // managing visibility of elements
+
+  // hide the modal
   logout.classList.add("hide");
   popup.classList.add("hide");
   if (isAuthenticated()) {
@@ -168,24 +173,29 @@ window.addEventListener("load", async () => {
   }
 
   // event listeners
+  // button Tous event listener
   buttonForAllCategories.addEventListener("click", e => {
     showAllImages(gallery, works);
   });
 
+  // Click du Log out
   logout.addEventListener("click", () => {
     localStorage.removeItem("jwtToken");
     window.location.href = "./login.html";
   });
 
+  // display Modal with click
   openModal.addEventListener("click", () => {
     modal.classList.add("show-modal");
     showAllImagesModal(modalGallery, works);
   });
 
+    // Close Modal with click
   closemodal.addEventListener("click", () => {
     modal.classList.remove("show-modal");
   });
 
+  // Click hide first modal and display second for add pictures
   addPictureBtn.addEventListener("click", () => {
     modal.classList.add("more_height");
     modalGalleryWrapper.classList.remove("showmodal");
@@ -194,6 +204,7 @@ window.addEventListener("load", async () => {
     addWorkModal.classList.add("showmodal");
   });
 
+  // Click Back arrow
   addWorkModalExitBtn.addEventListener("click", () => {
     modal.classList.remove("more_height");
     modalGalleryWrapper.classList.remove("hidemodal");
@@ -202,10 +213,12 @@ window.addEventListener("load", async () => {
     addWorkModal.classList.add("hidemodal");
   });
 
+  // Click close button
   closeAddWorkModal.addEventListener("click", () => {
     modal.classList.remove("show-modal");
   });
 
+  // Send picture formular
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const formData = new FormData();
